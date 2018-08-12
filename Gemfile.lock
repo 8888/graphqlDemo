@@ -41,6 +41,7 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
+    bcrypt (3.1.12)
     bindex (0.5.0)
     builder (3.2.3)
     byebug (10.0.2)
@@ -67,9 +68,8 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    graphiql-rails (1.4.11)
-      railties
-      sprockets-rails
+    graphiql-rails (1.4.4)
+      rails
     graphql (1.7.14)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
@@ -179,10 +179,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
-  graphiql-rails
+  graphiql-rails (= 1.4.4)
   graphql (~> 1.7.4)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
