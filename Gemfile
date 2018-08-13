@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'graphql', '~> 1.7.4'
 gem 'bcrypt', '~> 3.1.7'
+gem 'rack-cors', '~> 1.0', '>= 1.0.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
