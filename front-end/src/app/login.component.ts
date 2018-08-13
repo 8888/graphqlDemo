@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-login',
-  styles: ['.container {border: 1px solid black}'],
+  styles: ['.container {border: 1px solid black} .megaSmall {font-size: 8px}'],
   template: `
   <div class="container">
     <form #loginForm="ngForm">
@@ -19,6 +19,10 @@ import { AuthService } from './auth.service';
       <button type="submit" (click)="onLogin()">Login</button>
       <button type="submit" (click)="onRegister()">Register</button>
     </form>
+    <div *ngIf="authService.user">
+      <p>Signed in as {{authService.user!.email}}</p>
+      <p class="megaSmall">token: {{authService.user!.token}}</p>
+    </div>
   </div>
   `
 })
@@ -31,11 +35,19 @@ export class LoginComponent {
   };
 
   public onLogin() {
-    this.authService.login(this.model.email, this.model.password);
+    const email = this.model.email;
+    this.authService.login(email, this.model.password).subscribe(user => {
+      console.log(user);
+      if (user['data']['signinUser']) {
+        this.authService.storeUser(
+          email,
+          user['data']['signinUser']['token'] // wow gross
+        );
+      }
+    });
   }
 
   public onRegister() {
-    console.log(this.model);
-    console.log('register');
+    this.authService.register(this.model.email, this.model.password).subscribe(console.log);
   }
 }
